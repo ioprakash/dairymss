@@ -1,4 +1,5 @@
 
+@include('header')
 <!doctype html>
 <html>
 <head>
@@ -10,7 +11,7 @@
   @vite('resources/css/app.css')
 </head>
 <body>
-  <div class="min-h-screen py-6 flex flex-col justify-center sm:py-12 bg-cover bg-center bg-fixed" style="background-image: url('\top-view-variety-tasty-cheese-with-milk.jpg')">
+  <div class="min-h-screen py-6 flex flex-col justify-center sm:py-12 bg-cover bg-center bg-fixed" style="background-image: url('/image/cover.jpg')">
         <div class="relative py-3 sm:max-w-xl sm:mx-auto">
           <div
             class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-sky-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
@@ -32,7 +33,7 @@
             </div>
             <div class="max-w-md mx-auto">
               <div>
-                <h1 class="text-2xl font-semibold">Login</h1>
+                <h1 class="text-2xl font-semibold">Admistration Login</h1>
               </div>
               <form action="{{ route('admin.authenticate') }}" method="post">
                 @csrf
@@ -69,3 +70,4 @@
       </div>
 </body>
 </html>
+@include('footer')
