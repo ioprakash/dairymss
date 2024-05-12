@@ -1,20 +1,19 @@
 <?php
 
+use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\admin\LoginController as AdminLoginController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\employeController;
-// use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-// use Illuminate\Auth\Events\Login;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-    Route::group(['prefix' => 'account'], function(){
-        
 
-        // guest middleware
+Route::group(['prefix' => 'account'], function(){
+        
+    // guest middleware
     Route::group(['middleware' => 'guest'], function(){
         Route::get('login', [LoginController::class, 'index'])->name('account.login');
         Route::get('register', [LoginController::class, 'register'])->name('account.register');
@@ -31,6 +30,8 @@ Route::get('/', function () {
 
 });
 
+Route::get('admin/login', [AdminLoginController::class, 'index'])->name('admin.login');
+Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+Route::post('admin/authenticate', [AdminLoginController::class, 'authenticate'])->name('admin.authenticate');
 
-
-
+Route::get('admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
