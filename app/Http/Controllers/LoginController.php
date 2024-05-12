@@ -48,6 +48,7 @@ class LoginController extends Controller
         'name' => 'required|string|max:25|min:3',
         'email' => 'required|email|unique:users',
         'password' => 'required|confirmed|min:6',
+        'password_confirmation' => 'required|min:6',
     ]);
 
     if($validator->passes()){
@@ -59,7 +60,7 @@ class LoginController extends Controller
         $user->save();
         
 
-        return redirect()->Route('account.login')->with('success', 'Account created successfully'); 
+        return redirect()->Route('account.login')->with('success', 'you are successfully registered'); 
         
           }
             else{
