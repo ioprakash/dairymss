@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -19,6 +20,7 @@ class LoginController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|exists:users',
             'password' => 'required'
+        
         ]);
 
         if($validator->passes()){
@@ -75,3 +77,8 @@ class LoginController extends Controller
         return redirect()->Route('account.login');
     }
 }
+
+
+ return $records = DB::table('users')->get();
+       
+    

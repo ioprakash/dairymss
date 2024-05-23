@@ -12,6 +12,7 @@ class LoginController extends Controller
     // this method will return the admin    login page 
     public function index(){
         return view('admin.login');
+
     }
 
 
@@ -20,7 +21,7 @@ class LoginController extends Controller
     public function authenticate(Request $request){
 
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|exists:users',
+            'email' => 'required|email',
             'password' => 'required'
         ]);
 
@@ -34,7 +35,9 @@ class LoginController extends Controller
                     return redirect()->Route('admin.login')->with('error', 'You are not authorized to access this page');
                 }
                 else{
+                    // echo " hello, Login Success";
                     return redirect()->Route('admin.dashboard');
+
                 }
 
             }

@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\LoginController as AdminLoginController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,12 +40,15 @@ Route::group(['prefix' => 'account'], function(){
             Route::get('login', [AdminLoginController::class, 'index'])->name('admin.login');
             Route::post('authenticate', [AdminLoginController::class, 'authenticate'])->name('admin.authenticate');
 
+        });
+
         Route::group(['middleware' => 'admin.auth'], function(){
             Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
             Route::get('logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
-
-            });
+            
         }); 
 
     }); 
+    Route::get('/test', [UserController::class, 'showUser'])->name('view.user');
+    Route::get('/test/{id}', [UserController::class, 'singleUser'])->name('view.singleUser');

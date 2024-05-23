@@ -10,5 +10,6 @@ class DashboardController extends Controller
     // this method show the dashboard page for admin
     public function index(){
         return view('admin.dashboard');
+        // echo "Hello, Admin Dashboard";
     }
 }
